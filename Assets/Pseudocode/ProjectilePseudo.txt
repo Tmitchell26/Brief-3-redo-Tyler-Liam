@@ -1,0 +1,27 @@
+Projectile Pseudo
+
+1. set required component 
+	- type rigidbody 
+
+2. create variables
+	- m_speed = 5 (float)
+	- m_lifespan = 3 (float)
+	- attack (static int)
+	- enemy (EnemyController)
+	- m_rigidbody (rigidbody)
+
+3. create Awake method 
+	- m_rigidbody = get component rigidbody
+
+4. add to start method 
+	- mrigidbody add force (mrigidbody transform forward * mspeed)
+	- destroy (gameobject, mlifespan)
+
+5. create onCollisionEnter method (collision enemy)
+	- if enemy gameobject has tag "enemy"
+		- enemy game object get component from enemycontroller
+			.setenemycurrenthealth (gameobject findgameobject with tag 
+			"character".get component from player controller.currentattack)
+		- destroy this game object 
+	- end if 
+

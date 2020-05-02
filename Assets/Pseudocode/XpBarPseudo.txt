@@ -1,0 +1,17 @@
+Xp Bar PseudoCode 
+	
+1. create variables 
+	- slider (slider)
+	- maxxp (integer)
+
+2. create setminxp method -> xp (integer)
+	- slider minvalue = xp
+	- slider value = xp
+
+3. create setxp method -> xp (integer)
+	- slider value = xp
+
+4. create setmaxxp method -> maxxp (integer)
+	- slider maxvalue = maxxp
+
+

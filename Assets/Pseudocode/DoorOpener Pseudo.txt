@@ -1,0 +1,36 @@
+Door Opener PseudoCode
+
+1. create variables 
+	- rightDoor (Transform)
+	- leftDoor (Transfrom)
+	- rightClosedPosition = new vector3 (vector 3)
+	- leftClosedPosition = new vector3 (vector3)
+	- rightOpenedPosition = new vector3 (vector 3)
+	- leftOpenedPosition = new vector3 (vector 3)
+	- openSpeed = 5 (float)
+	- open = false (bool)
+
+2. add to update method 
+	- if open
+		- right door position = vector3 lerp (right door position, rightOpenedPosition, deltaTime * openSpeed)
+		- left door position = vector3 lerp (left door position, leftOpenedPosition, deltaTime * openSpeed)
+	- else 
+		- right door position = vector3 lerp (right door position, rightclosedPosition, deltaTime * openSpeed)
+		- left door position = vector3 lerp (left door position, leftClosedPosition, deltaTime * openSpeed)
+	- end if/else
+
+3. create OnTriggerEnter method (collider other)
+	- if other tag equals "Character"
+		- openDoor()
+	- end if 
+
+4. create OnTriggerExit method (Collider other)
+	- if other tag equals "Character"
+		- closedoor()
+
+5. create CloseDoor method 
+	- open equals false
+
+6. create OpenDoor method 
+	- open equals true
+

@@ -1,0 +1,17 @@
+Coin PseudoCode
+
+1. Create variables 
+	- spinSpeed = 100 (float)
+
+2. add to update method 
+	- transform rotate (0x,0y, deltaTime * spinSpeed z)
+
+3. create method - OnTriggerEnter (Collider other)
+	- If other tag equals "Character"
+		- if this tag equals "Coin"
+			- get component from player controller GainXP
+		end if 
+		
+		Destory this object 
+	end if 
+

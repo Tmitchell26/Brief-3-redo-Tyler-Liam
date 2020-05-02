@@ -1,0 +1,4 @@
+Wall Event PseudoCode
+
+1. create killwall method 
+	- destroy this game object 

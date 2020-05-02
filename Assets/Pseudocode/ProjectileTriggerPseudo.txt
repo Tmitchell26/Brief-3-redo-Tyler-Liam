@@ -1,0 +1,11 @@
+Projectile Trigger PseudoCode
+
+1. create variables 
+	- mprojectile (GameObject)
+	- mspawntransform (transform)
+
+2. add to update method 
+	- if input get key down is left mouse button 
+		- instantiate(proectile,spawntransform position, 
+			spawntransfrom rotation)
+	- end if 

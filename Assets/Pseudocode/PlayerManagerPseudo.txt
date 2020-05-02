@@ -1,0 +1,14 @@
+Player Manager PseudoCode
+
+1. create singleton 
+	- static instance (PlayerManager)
+	- private method Awake
+		- instance = this
+	- end method 
+
+2. create variables 
+	- player (GameObject)
+
+3. create killplayer method 
+	- scenemanager loadscene (scenemanager getactivescene().buildindex)
+

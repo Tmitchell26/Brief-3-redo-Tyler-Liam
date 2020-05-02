@@ -1,0 +1,6 @@
+Reset Level PseudoCode
+
+1. add to update method 
+	- if inout get key down q equals true 
+		- scenemanager loadscene -> 0
+	- end if 

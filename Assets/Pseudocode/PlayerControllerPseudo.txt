@@ -1,0 +1,101 @@
+Player Controller PseudoCode
+
+1. create variables
+	- moveSpeed = 5 (float)
+	- turnspeed = 60 (float)
+	- jumpheight = 5 (float)
+	- maxhealth = 20 (integer)
+	- hp = 0 (integer)
+	- attack = 2 (integer)
+	- xp = 0 (integer)
+	- currentxp (integer)
+	- xpfornextlevel = 5 (integer)
+	- level = 0 (integer)
+	- levelcounter (text)
+	- playerhealth (integer)
+	- currenthealth (integer)
+	- currentattack (integer)
+	- healthbar (healtbar)
+	- xpbar (xpbar)
+
+2. add to start method 
+	- cureser lockstate = cursorlockmode locked
+	- call setxpfornextlevel
+	- playerhealth = maxhealth 
+	- healthbar.setmaxhealth -> maxhealth
+	- currenthealth = maxhealth 
+	- xpbar.setminxp -> xp
+	- currentxp = xp
+	- currentattack = attack 
+	- levelcounter text = "level: " + level
+
+3. create setxpfornextlevel method 
+	- xpfornextlevel = 5 + level 
+	- xpbar.setmaxxp -> xpfornextlevel
+	- xpbar.setxp -> xp
+	- currentxp = xp
+
+4. create setplayerhealth method 
+	- playerhealth = maxhealth + (2 * level)
+	- currenthealth = playerhealth 
+	- healthbar.sethealth ->currenthealth 
+	- healthbar.setmaxhealth ->playerhealth
+
+5. create setplayerattack method 
+	- currentattack = attack + (2 * level)
+
+6. create level up method 
+	- xp = 0
+	- level ++
+	- levelcounter text = "level: " + level
+	- call setxpfornextlevel
+	- call setplayerhealth 
+	- call setplayerattack 
+
+7. create gainxp method -> xptogain (integer)
+	- xp += xptogain
+	- currentxp = xp
+	- xpbar.setxp -> currentxp
+
+8. create gainhp method -> hptogain (integer)
+	- hp += hptogain
+	- if currenthealth < playerhealth
+		- currenthealth += hp
+		-healthbar.sethealth -> currenthealth
+	- end if 
+	hp = 0
+
+9. create takedamage method -> damage (integer)
+	- currenthealth -= damage
+	- healthbar.sethealth -> currenthealth
+	- if currenthealth < 0
+		- call playerManager instantiate killPlayer method
+	- end if
+
+10. add to update method 
+	- if input key down x equals true
+		- call gainxp -> 1
+		- currentxp = xp
+		- xpbar.setxp -> currentxp
+	- end if 
+	- if input key down z equals true 
+		- call gainhp -> 2
+		- currenthealth = currenthealth + hp
+		- healthbar.sethealth -> currenthealth
+		- hp = 0
+	- end if 
+	- if xp >= xpfornextlevel
+		- call levelup
+	- end if 
+	- if input key down t
+		- call takedamage -> 2
+	- end if 
+	- if input key space equals true and math abs get component rigidbody velocity y <0.01
+		- get component rigidbody velocity =+ vector3 up * jumpheight
+	- end if
+	- translation = input getaxis "vertical" * movespeed (float)
+	- straffe = input getaxis "horizontal" * movespeed (float)
+	- translation *= deltaTime
+	- strafe *= deltaTime
+	- transform translate (straffe,0,translation)
+

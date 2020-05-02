@@ -1,0 +1,20 @@
+Mouse Camera PseudoCode
+
+1. create variables 
+	- mouseLook (Vector2)
+	- smoothV (vector2)
+	- sensitivity = 5.0 (float)
+	- smoothing = 2.0 (float)
+	- player (GameObject)
+
+2. add to start method 
+	- player = this transform parent gameobject 
+
+3. add to update method 
+	- var mr = new vector2 input get axis (mouse x), input get axis (mouse y)
+	- smoothv = math lerp (smoothv.x,md.x,1/smoothing)
+	- smoothv = math lerp (smoothv.y,md.y,1/smoothing)
+	- mouseLook += smoothv
+	- transform local rotation = Quaternion angle axis (-mouselook.y,vector3.right)
+	- player transform local rotation = Quaternion angle axis (mouseLook.x, player transform up)
+

@@ -1,0 +1,73 @@
+Enemy Controller PseudoCode
+
+1. Create variables 
+	- lookRadius = 20 (float)
+	- currentHealth (integer)
+	- hitTime = 1 (float)
+	- currentTime = 0 (float)
+	- coin (GameObject)
+	- health (GameObject)
+	- onEnemyDeath (UnityEvent)
+	- target (Transform)
+	- agent (NavMeshAgent)
+
+2. create SetEnemyCurrentHealth (Damage (Integer))
+	- currentHealth -= damage
+
+	- if currentHealth <= 0
+		- OnDeath()
+		- OnEnemyDeath.Invoke()
+		- Destory this game object 
+	- end if 
+
+3. create OnDeath method 
+	- new variable change = 1 (integer)
+
+	- for int i = 1, i < maxHealth /2, i++
+		- var coinPos = new vector3(transform position.x - change, 2, transform position.z)
+		- var healthPos = new vector3(transform position.x + change, 2, transform position.z)
+		- change ++
+	- end for 
+
+4. add to start method 
+	- target = PlayerManager,instance,player.transform
+	- agent = get component NavMeshAgent
+	- currenthealth = maxHealth
+
+5. add to update method 
+	- distance = vector3.distance(target.position, transform.position)
+
+	- if distance <= lookRadius
+		- agent set destination (target.position)
+
+		- if distance <= agent.stoppingdistance
+			- currentTime += deltaTime
+
+			- if currentTume >= hitTime
+				-attack()
+			- end if 
+
+			- faceTarget()
+		- end if 
+	- end if 
+
+6. FaceTarget
+	- vector3 direction = (target position - transform position).normalized
+	- Quaternion lookRoation = Quarternion.LookRotaion( new vector3 (direction.x, 0, direction.z))
+	- transform rotation = Quaternion.slepr( transform rotation, lookRotation, eltaTime * 5)
+
+7. create OnDrawGizmos method
+	- Gizmos.color = Color.red
+	- Gizmos.DrawWireShpere( transform position, lookradius)
+
+8. create attack method
+	- RaycastHit hit 
+	- if physics raycast (transform position, transform forward, out hit)
+		- hit collider gameobject tag equals "character"
+			- hit collider gameobject get component from player controller TakeDamage()
+			- log player has been hit for 5 damage 
+			- currentTime = 0
+
+
+
+

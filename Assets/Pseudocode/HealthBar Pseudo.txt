@@ -1,0 +1,20 @@
+HealthBar PseudoCode
+
+1. create variables
+	- slider (Slider)
+	- gradient (Gradient)
+	- fill (Image)
+	- maxHealth (int)
+
+2. create SetMaxHealth method 
+	- slider maxValue = health
+	- slider value = health 
+	- fill colour = gradient evaluate()
+
+3. create setHealth method (integer health)
+	- slider value = health 
+	- fill colour = gradient evaluate(slider normalized)
+
+4. create upgradeMaxHealth method 
+	- slider maxvalue = maxHealth
+
